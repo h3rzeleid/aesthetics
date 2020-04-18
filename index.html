@@ -5,6 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Денизы</title>
 
+    <!-- CSS -->
+    <style type="text/css">
+      body {
+        /* Que el body ocupe toda la pantalla */
+        height: 100vh;
+      }
+      .container {
+        /* Usar todo el espacio posible */
+        height: 100%;
+        width: 100%;
+
+        /* Centrar todo en pantalla */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #image {
+        /* Las imagenes siempre tienen que tener el height auto o se distorsionaran */
+        height: auto;
+        /* En pantallas pequeñas, la imagen tendra una anchura del 75% del contenedor (Body) */
+        width: 75%;
+      }
+
+      /* En pantallas mas grandes, a partir de 640px de anchura de pantalla (Tabletas, ordenadores)
+         tendran las siguientes caracteristicas
+      */
+
+      @media (min-width: 640px) {
+        #image {
+          width: 25%;
+        }
+      }
+
+      p {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+    </style>
   </head>
   <body>
     <!-- Musica cutre por iframe -->
