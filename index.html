@@ -1,43 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<iframe src="https://www.youtuberepeater.com/watch?v=QXeaLw2s-Wo" allow="autoplay" style="display:none" id="iframeAudio">
-</iframe>
-<meta charset="utf-8" />
-<title>Денизы <3</title>
-<style type="text/css">
-h1 { font-size:1.2em; color:#9b9b9b }
-h2 { font-size:0.9em; }
-a:link { color:#33c; } 
-a:visited { color:#339; }
-p { font-size:1.35em; }
-</style>
-<script type="text/javascript">
-var random_images_array = ['004.jpg','012.jpg','053.jpg','102.jpg','113.jpg','4303.jpg','156.jpg','229.jpg','497.jpg','515.jpg','536.jpg','545.jpg','552.jpg','568.jpg','587.jpg','595.jpg','626.jpg','637.jpg','649.jpg','702.jpg','713.jpg','759.jpg','786.jpg','883.jpg','933.jpg','958.jpg','972.jpg','985.jpg','1012.jpg','1037.jpg','1063.jpg','1065.jpg','1121.jpg','1123.jpg','1143.jpg','1147.jpg','1193.jpg','1197.jpg','1207.jpg','1225.jpg','1238.jpg','1262.jpg','1268.jpg','1276.jpg','1284.jpg','1306.jpg','1314.jpg','1345.jpg','1362.jpg','1372.jpg','1386.jpg','1394.jpg','1414.jpg','1418.jpg','1420.jpg','1424.jpg','1448.jpg','1450.jpg','1468.jpg','1472.jpg','1477.jpg','1488.jpg','1504.jpg','1510.jpg','1535.jpg','1539.jpg','1582.jpg','1588.jpg','1595.jpg','1600.jpg','1610.jpg','1732.jpg','1775.jpg','1788.jpg','1805.jpg','1882.jpg','1895.jpg','1907.jpg','1914.jpg','1939.jpg','1948.jpg','2136.jpg','2162.jpg','2199.jpg','2275.jpg','2426.jpg','2438.jpg','2479.jpg','2540.jpg','2585.jpg','2783.jpg','2793.jpg','2803.jpg','2815.jpg','2878.jpg','2884.jpg','2914.jpg','2942.jpg','3060.jpg','3093.jpg','3221.jpg','3248.jpg','3374.jpg','3526.jpg','3971.jpg','z01.jpg','z02.jpg','z03.jpg','z04.jpg','z05.jpg','z06.jpg','z07.jpg','z08.jpg','z09.jpg','z10.jpg','z11.jpg','z12.jpg','z13.jpg','z14.jpg','z15.jpg','z16.jpg','z17.jpg','z18.jpg','z19.jpg','z20.jpg','zz01.jpg','zz02.jpg','zz03.jpg','zz04.jpg','zz05.jpg','zz06.jpg','zz07.jpg','zz08.jpg','zz09.jpg','zz10.jpg','zz11.jpg','zz12.jpg','zz13.jpg','zz14.jpg','zz15.jpg','zz16.jpg','zz17.jpg','zz18.jpg','zz19.jpg','zz20.jpg','zz21.jpg','zz22.jpg','zz23.jpg','zz24.jpg'];    
-function getRandomImage(imgAr, path) {
-    path = path || 'images/'; // default path here
-    var num = Math.floor( Math.random() * imgAr.length );
-    var img = imgAr[ num ];
-    var imgStr = '<img src="' + path + img + '" alt = "">';
-    document.write(imgStr); document.close();
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Денизы</title>
 
-</script>
-</head>
-<body>
+    <!-- CSS -->
+    <style type="text/css">
+      body {
+        /* Que el body ocupe toda la pantalla */
+        height: 100vh;
+      }
+      .container {
+        /* Usar todo el espacio posible */
+        height: 100%;
+        width: 100%;
 
-    <button onclick="myButton()">CLICK IMAGE
+        /* Centrar todo en pantalla */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
 
-<script>
-	function myButton() {
-	location.reload();
-	}
-</script>
+      #image {
+        /* Las imagenes siempre tienen que tener el height auto o se distorsionaran */
+        height: auto;
+        /* En pantallas pequeñas, la imagen tendra una anchura del 75% del contenedor (Body) */
+        width: 75%;
+      }
 
-<div>
-    <script type="text/javascript">getRandomImage(random_images_array, 'images/')</script>
-</div>
-<h1>Only 126 images</h1>
-<p><a href="http://www.twitter.com/tumblrbott">Contact</a> and get full album (+5.000) → 2$</p>
-</body>
+      /* En pantallas mas grandes, a partir de 640px de anchura de pantalla (Tabletas, ordenadores)
+         tendran las siguientes caracteristicas
+      */
+
+      @media (min-width: 640px) {
+        #image {
+          width: 25%;
+        }
+      }
+
+      p {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Musica cutre por iframe -->
+    <iframe
+      src="https://www.youtuberepeater.com/watch?v=QXeaLw2s-Wo"
+      allow="autoplay"
+      style="display: none;"
+      id="iframeAudio"
+    >
+    </iframe>
+
+    <!-- Container que centra vertical y horizontalmente el contenido -->
+    <div class="container">
+      <p style="display: block;">CLICK IMAGE</p>
+
+      <!-- Imagen -->
+      <img id="image" src="" alt="Tumblr image" />
+
+      <!-- Boton para que paguen -->
+      <p>
+        <a href="http://www.twitter.com/tumblrbott">Contact</a> and get full
+        album (+5.000) → 2$
+      </p>
+    </div>
+
+    <!-- Javascript -->
+    <!-- Siempre cerca del cierre de body para que no bloquee la carga de contenido -->
+    <script>
+      'use strict';
+
+      // Define cuantas imagenes tienes en la carpeta de img
+      const imageCount = 3;
+
+      // Referencia el elemento que tiene la id de "image"
+      const imageEl = document.getElementById('image');
+
+      // Escucha el evento de click en la imagen y ejecuta la funcion changeImg
+      imageEl.addEventListener('click', changeImg);
+
+      // Funcion que se llama al clicar en la imagen
+      function changeImg() {
+        const randInt = getRandomInt(imageCount);
+
+        imageEl.src = `img/${randInt}.jpeg`;
+      }
+
+      // Genera un integer (Numero) con el maximo al que llames
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
+
+      // Llamalo al cargar la pagina
+      changeImg();
+    </script>
+  </body>
 </html>
