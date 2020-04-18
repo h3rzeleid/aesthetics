@@ -69,4 +69,33 @@
       </p>
     </div>
 
+    <!-- Javascript -->
+    <!-- Siempre cerca del cierre de body para que no bloquee la carga de contenido -->
+    <script>
+      'use strict';
+
+      // Define cuantas imagenes tienes en la carpeta de img
+      const imageCount = 3;
+
+      // Referencia el elemento que tiene la id de "image"
+      const imageEl = document.getElementById('image');
+
+      // Escucha el evento de click en la imagen y ejecuta la funcion changeImg
+      imageEl.addEventListener('click', changeImg);
+
+      // Funcion que se llama al clicar en la imagen
+      function changeImg() {
+        const randInt = getRandomInt(imageCount);
+
+        imageEl.src = `img/${randInt}.jpeg`;
+      }
+
+      // Genera un integer (Numero) con el maximo al que llames
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
+
+      // Llamalo al cargar la pagina
+      changeImg();
+    </script>
   </body>
